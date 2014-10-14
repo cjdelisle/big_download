@@ -11,10 +11,13 @@ gzip compessed octet stream and then sends endless nulls.
 2. nullsrv.js for the lazy who can't be bothered to write a nodejs http server.
 
 
+Fun fact: The compression ratio of `/dev/zero` is approximately 1000:1 so you can do more with less.
+
+
 supergzip is only useful for detecting patterns in gzipped results of really really
 simple content, like /dev/zero. How infininulls was made:
 
-   cat /dev/zero | node ./supergzip.js
+`cat /dev/zero | node ./supergzip.js`
 
 Notice a repeating pattern...
 
