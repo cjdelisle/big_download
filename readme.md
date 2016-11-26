@@ -1,6 +1,18 @@
 # Big Download - It must be close to finished by now...
 
-Endless gzip generator.... Because nulls compress really well.
+This thing makes a server which will send someone a file of infinite size until it fills up their
+harddrive but it uses gzip compression (supported in modern browsers) to do so really really fast!
+
+## Use with express.js
+
+```javascript
+var Express = require('express');
+var BigDownload = require('big_download');
+var app = Express();
+app.get('/big_download', BigDownload.nulls);
+```
+
+## How the shit works internally.
 
 This project contains 2 components:
 
@@ -22,3 +34,8 @@ simple content, like /dev/zero. How infininulls was made:
 Notice a repeating pattern...
 
 Add the line: `if (i === 11) { i = 3; }` to the output and truncate on line number 12.
+
+
+## License
+
+MIT so you can use it in all of your Enterprise Software Projects.

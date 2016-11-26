@@ -1,22 +1,15 @@
-/*
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 var Http = require('http');
-var Infininulls = require('./infininulls.gz.js');
+var Infininulls = require('./Infininulls');
 
-Http.createServer(function (req, res) {
+var handler = function (req, res) {
     console.log(req.connection.remoteAddress + '  ' + req.headers['user-agent']);
     res.writeHead(200, { 'content-encoding': 'gzip', 'Content-Type': 'application/octet-stream' });
     Infininulls.writeData(res);
-}).listen(1337, '::');
+}
+
+if (module.parent) {
+    module.exports.nulls = handler;
+} else {
+    Http.createServer(handler).listen(1337, '::');
+    console.log("Listening on port 1337");
+}

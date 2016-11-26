@@ -1,0 +1,25 @@
+{
+  "name": "big_download",
+  "version": "1.0.0",
+  "description": "You must be close to done by now",
+  "main": "nullsrv.js",
+  "scripts": {
+    "test": "echo 'lol, tests?'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cjdelisle/big_download.git"
+  },
+  "keywords": [
+    "download",
+    "gzip",
+    "infinite",
+    "lulz"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cjdelisle/big_download/issues"
+  },
+  "homepage": "https://github.com/cjdelisle/big_download#readme"
+}
