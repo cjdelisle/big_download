@@ -1,7 +1,10 @@
 # Big Download - It must be close to finished by now...
 
 This thing makes a server which will send someone a file of infinite size until it fills up their
-harddrive but it uses gzip compression (supported in modern browsers) to do so really really fast!
+harddrive or memory but it uses gzip compression to do so really really fast!
+
+Thanks to Christian Haschek for writing a [blog post](https://blog.haschek.at/post/f2fda) about
+this which encouraged my to clean up this repo a little bit.
 
 ## Use with express.js
 
@@ -9,8 +12,36 @@ harddrive but it uses gzip compression (supported in modern browsers) to do so r
 var Express = require('express');
 var BigDownload = require('big_download');
 var app = Express();
-app.get('/big_download', BigDownload.nulls);
+[
+    '/wp-login.php'
+    /^wp-admin/,
+    /^wp-content/,
+    '/jmx-console'
+    '/SQLiteManager/main.php'
+    '/sqlitemanager/main.php'
+    '/SQLiteManager-1.2.4/main.php'
+    '/phpMyAdmin-4.2.1-all-languages'
+    '/phpMyAdmin-4.2.1-english'
+    '/phpMyAdmin'
+    '/phpmyadmin'
+    '/MySQLDumper'
+    '/mysqldumper'
+    '/myadmin'
+    '/jenkins/script'
+    '/sqlite/main.php'
+    '/wp-login.php2'
+].forEach((url) => {
+    app.get(url, BigDownload.nulls);
+})
 ```
+
+## What happens when someone hits this "service"...
+
+1. They get a gzip encoding header (most things support this)
+2. They start getting valid gzip data which is gzip representation of all null bytes
+so it decompresses 1000x it's size.
+3. It Never Stops.
+
 
 ## How the shit works internally.
 
