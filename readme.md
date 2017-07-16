@@ -1,4 +1,4 @@
-# Big Download - It must be close to finished by now...
+# Big Download - Node express middleware for zipbombing vuln scanners
 
 This thing makes a server which will send someone a file of infinite size until it fills up their
 harddrive or memory but it uses gzip compression to do so really really fast!
